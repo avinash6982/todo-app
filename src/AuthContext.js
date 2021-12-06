@@ -5,20 +5,20 @@ const AuthContext = createContext()
 const AuthProvider = props => {
 
     const [user, setUser] = useState({
-        userType: null,
+        user: null,
         isLoading: true
     })
 
     const updateUser = user =>
         setUser({
-            userType: user,
+            user: user,
             isLoading: false
         })
 
     useEffect(() => {
 
         let userDetails = JSON.parse(localStorage.getItem("todoappuser"))
-        if (userDetails !== user.userType)
+        if (userDetails !== user.user)
             updateUser(userDetails)
         else
             updateUser(null)
