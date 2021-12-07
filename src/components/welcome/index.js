@@ -12,7 +12,7 @@ const WelcomMessage = () =>
         }
     </Container>
 
-const ActionButtons = () =>
+const ActionButtons = ({ onSignin }) =>
     <Container>
         <Container className={classes.actionsContainer}>
             <Container className={classes.iconCenterContainer}>
@@ -22,7 +22,7 @@ const ActionButtons = () =>
             </Container>
             <Row className="full-height">
                 <Col className="full-height nopadding">
-                    <Button className="full-height full-width noborder">{SIGNIN}</Button>
+                    <Button onClick={() => onSignin()} className="full-height full-width noborder">{SIGNIN}</Button>
                 </Col>
                 <Col className="full-height nopadding">
                     <Button className="full-height full-width noborder" variant="success">{SIGNUP}</Button>
@@ -31,7 +31,7 @@ const ActionButtons = () =>
         </Container>
     </Container>
 
-const WelcomeComponent = () => {
+const WelcomeComponent = ({ onSignin }) => {
 
     return (
         <Container className="main-container">
@@ -40,7 +40,7 @@ const WelcomeComponent = () => {
                     <WelcomMessage />
                 </Col>
                 <Col sm={9} className="center">
-                    <ActionButtons />
+                    <ActionButtons onSignin={onSignin} />
                 </Col>
             </Row>
         </Container>

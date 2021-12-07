@@ -1,9 +1,12 @@
+import { useAuth } from "../AuthContext";
 import NavbarComponent from "../components/navbar";
 
 const Navbar = () => {
 
+    const auth = useAuth()
+
     const onSignout = () =>
-        console.log("signout")
+        auth.signout()
 
     return (
         <NavbarComponent onSignout={onSignout} />

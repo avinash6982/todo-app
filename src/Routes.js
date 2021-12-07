@@ -2,7 +2,6 @@ import { Route, Routes } from "react-router";
 
 import Welcome from "./container/Welcome";
 import RequireAuth from "./RequireAuth";
-import UserRoute from "./UserRoute";
 
 export default function ApplicationRoutes() {
 

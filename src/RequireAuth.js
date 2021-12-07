@@ -9,7 +9,6 @@ const RequireAuth = props => {
     const auth = useAuth()
     const location = useLocation()
 
-    console.log(auth.user.isLoading)
     if (auth.user.isLoading)
         return <LoadingScreen />
 
