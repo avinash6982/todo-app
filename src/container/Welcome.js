@@ -4,7 +4,7 @@ import { useNavigate } from "react-router";
 import { useAuth } from "../AuthContext";
 import WelcomeComponent from "../components/welcome";
 
-const Welcome = () => {
+const Welcome = props => {
 
     const auth = useAuth()
     const navigate = useNavigate()
@@ -13,7 +13,7 @@ const Welcome = () => {
         auth.signin("userOne", () => navigate("/"))
 
     return (
-        <WelcomeComponent onSignin={onSignin} />
+        <WelcomeComponent onSignin={onSignin} component={props.children && props.children} />
     );
 }
 
