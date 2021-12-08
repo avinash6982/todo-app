@@ -1,23 +1,25 @@
 import React, { useEffect, useState } from "react";
-import { Form, Collapse } from "react-bootstrap";
+import { Collapse, Form, } from "react-bootstrap";
 
 import CustomButton from "../../common/buttons/CustomButton";
 import FontAwesomeIcon from "../../common/icons/FontAwesomeIcon";
-import { passwordValidator, emailValidator } from "../../services/validators/FormValidator";
+import * as formValidators from "../../services/validators/FormValidator";
 
 import classes from "./styles.module.css";
 
-const Signin = ({
-    onSignin,
-    setPage,
+const Signup = ({
+    onSignup,
     errMessages
 }) => {
 
     const [state, setState] = useState({
+        fullName: "",
         email: "",
-        password: ""
+        password: "",
+        confirmPassword: ""
     })
 
+    //function to safe update component state
     const updateState = (label, data) =>
         setState(previousState => ({
             ...previousState,
@@ -27,39 +29,67 @@ const Signin = ({
     const [passwordVisible, setPasswordVisible] = useState(false)
 
     const [errorMessages, setErrorMessages] = useState({
+        showFullNameError: false,
         showEmailError: false,
         showPasswordError: false,
+        showConfirmPasswordError: false
     })
 
-    const signinHandler = () => {
+    const [formCompleted, setFormCompleted] = useState(true)
 
-        onSignin(state)
-    }
+    const signupHandler = () =>
+        Object.values(state).every(item => item !== "") ?
+            (formCompleted &&
+                Object.values(errorMessages).every(item => item === false)) &&
+            onSignup({
+                fullName: state.fullName,
+                email: state.email,
+                password: state.password
+            }) : setFormCompleted(false)
 
     useEffect(() => {
 
         setErrorMessages({
-            showEmailError: state.email !== "" ? !emailValidator(state.email) : false,
-            showPasswordError: state.password !== "" ? !passwordValidator(state.password) : false
+            showFullNameError: state.fullName !== "" ? !formValidators.fullNameValidator(state.fullName) : false,
+            showEmailError: state.email !== "" ? !formValidators.emailValidator(state.email) : false,
+            showPasswordError: state.password !== "" ? !formValidators.passwordValidator(state.password) : false,
+            showConfirmPasswordError: state.confirmPassword !== "" ? !formValidators.confirmPasswordValidator(state.password, state.confirmPassword) : false
         })
     }, [state])
 
     return (
-        <Form>
+        <Form className="formContainer">
             <Form.Group className={classes.inputContainer}>
                 <FontAwesomeIcon
                     title="user"
                     size="30"
                     color="#699EEE" />
                 <Form.Control
-                    onChange={e => updateState("email", e.target.value)}
+                    onChange={e => updateState("fullName", e.target.value)}
                     className={classes.inputField}
                     type="text"
+                    placeholder="FullName" />
+            </Form.Group>
+            <Collapse in={errorMessages.showFullNameError}>
+                <div className={classes.errorMessages}>
+                    Please input a valid name
+                </div>
+            </Collapse>
+
+            <Form.Group className={classes.inputContainer}>
+                <FontAwesomeIcon
+                    title="envelope"
+                    size="30"
+                    color="#699EEE" />
+                <Form.Control
+                    onChange={e => updateState("email", e.target.value)}
+                    className={classes.inputField}
+                    type="email"
                     placeholder="Email" />
             </Form.Group>
             <Collapse in={errorMessages.showEmailError}>
                 <div className={classes.errorMessages}>
-                    Please enter a valid email address
+                    Please input a valid email id
                 </div>
             </Collapse>
 
@@ -81,14 +111,38 @@ const Signin = ({
                     Please input a valid password
                 </div>
             </Collapse>
-            <Collapse in={errMessages.showAuthErr}>
-                <div className={classes.errorMessages}>
-                    Invalid credentials, please try again
+
+            <Form.Group className={classes.inputContainer}>
+                <FontAwesomeIcon
+                    title={passwordVisible ? "eye" : "eye-slash"}
+                    size="30"
+                    color="#699EEE"
+                    onMouseEnter={() => setPasswordVisible(true)}
+                    onMouseOut={() => setPasswordVisible(false)} />
+                <Form.Control
+                    onChange={e => updateState("confirmPassword", e.target.value)}
+                    className={classes.inputField}
+                    type={passwordVisible ? "text" : "password"}
+                    placeholder="Confirm password" />
+            </Form.Group>
+            <Collapse in={errorMessages.showConfirmPasswordError}>
+                <div className={classes.errorMessages} title="passwords must be same">
+                    Passwords doesnot match
                 </div>
             </Collapse>
-            <Collapse in={errMessages.showSigninError}>
+            <Collapse in={!formCompleted}>
                 <div className={classes.errorMessages}>
-                    Something went wrong, please try again
+                    Please fill in all fields
+                </div>
+            </Collapse>
+            <Collapse in={errMessages.showSignupErr}>
+                <div className={classes.errorMessages}>
+                    Something went wrong, try again later
+                </div>
+            </Collapse>
+            <Collapse in={errMessages.showEmailError}>
+                <div className={classes.errorMessages}>
+                    Email already in use
                 </div>
             </Collapse>
 
@@ -96,20 +150,12 @@ const Signin = ({
                 <CustomButton
                     variant="primary"
                     styles={{ float: "right" }}
-                    text="signin"
+                    text="signup"
                     icon="arrow-right"
-                    onClick={signinHandler} />
-            </div>
-
-            <div className={classes.signinOptions}>
-                <a href="/" className={classes.links}>Forgot password</a>
-                <a href="/" className={classes.links}>
-                    Help
-                    <FontAwesomeIcon color="#2A4F96" title="question-circle" paddingLeft="5px" />
-                </a>
+                    onClick={signupHandler} />
             </div>
         </Form>
     );
 }
 
-export default Signin
+export default Signup

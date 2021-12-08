@@ -1,6 +1,6 @@
 import React from "react";
 import { Col, Container, Row, Button } from "react-bootstrap";
-import { Navigate, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 
 import { OR, SIGNIN, SIGNUP, WELCOME_MESSAGE } from "../../common/constants/Headings";
 import classes from "./styles.module.css";
@@ -32,7 +32,7 @@ const ActionButtons = ({ showSignup, onSignin }) =>
         </Container>
     </Container>
 
-const WelcomeComponent = ({ onSignin }) => {
+const WelcomeComponent = ({ onSignin, ...rest }) => {
 
     const navigate = useNavigate()
 
@@ -46,7 +46,11 @@ const WelcomeComponent = ({ onSignin }) => {
                     <WelcomeMessage />
                 </Col>
                 <Col sm={9} className="center">
-                    <ActionButtons showSignup={showSignup} onSignin={onSignin} />
+                    {
+                        rest.children ?
+                            rest.children :
+                            <ActionButtons showSignup={showSignup} onSignin={onSignin} />
+                    }
                 </Col>
             </Row>
         </Container>

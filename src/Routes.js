@@ -8,10 +8,9 @@ export default function ApplicationRoutes() {
 
     return (
         <Routes>
-            <Route path="welcome" element={<Welcome />}>
-                <Route path="signin" element={<Welcome page="signin" />} />
-                <Route path="signup" element={<Signup />} />
-            </Route>
+            <Route exact path="/welcome" element={<Welcome />} />
+            <Route path="/welcome/signin" element={<Welcome page="signin" />} />
+            <Route path="/welcome/signup" element={<Signup />} />
             <Route
                 path="/"
                 element={

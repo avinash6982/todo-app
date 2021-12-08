@@ -13,7 +13,7 @@ const Welcome = props => {
         auth.signin("userOne", () => navigate("/"))
 
     return (
-        <WelcomeComponent onSignin={onSignin} component={props.children && props.children} />
+        <WelcomeComponent onSignin={onSignin} {...props} />
     );
 }
 

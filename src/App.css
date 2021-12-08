@@ -1,7 +1,7 @@
 .main-container {
   max-width: 100% !important;
   height: calc(100vh - 4rem);
-  background-color: #c7e3f7;
+  background-color: #c6e8ff;
   padding: 3rem;
 }
 
@@ -28,4 +28,10 @@
 
 .text-large {
   font-size: 30px;
+}
+
+.formContainer {
+  padding: 3rem;
+  background-color: #d4edff;
+  border-radius: 1rem;
 }
