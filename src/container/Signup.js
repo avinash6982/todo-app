@@ -13,7 +13,7 @@ const Signup = () => {
     })
 
     const onSignup = data => {
-
+        //TODO: mock signup
         navigate("/welcome/signin")
     }
 
