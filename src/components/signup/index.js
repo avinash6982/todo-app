@@ -5,7 +5,12 @@ import CustomButton from "../../common/buttons/CustomButton";
 import FontAwesomeIcon from "../../common/icons/FontAwesomeIcon";
 import * as formValidators from "../../services/validators/FormValidator";
 
+import * as placeholder from "../../common/constants/PlaceHolder";
+import * as stateLabel from "../../common/constants/StateLabels";
+import * as errorMessage from "../../common/constants/ErrorMessages";
+import * as title from "../../common/constants/Title";
 import classes from "./styles.module.css";
+import { SIGNUP } from "../../common/constants/Headings";
 
 const Signup = ({
     onSignup,
@@ -59,20 +64,25 @@ const Signup = ({
 
     return (
         <Form className="formContainer">
+            <Form.Label>
+                <h3>
+                    {SIGNUP}
+                </h3>
+            </Form.Label>
             <Form.Group className={classes.inputContainer}>
                 <FontAwesomeIcon
                     title="user"
                     size="30"
                     color="#699EEE" />
                 <Form.Control
-                    onChange={e => updateState("fullName", e.target.value)}
+                    onChange={e => updateState(stateLabel.FULLNAME, e.target.value)}
                     className={classes.inputField}
                     type="text"
-                    placeholder="FullName" />
+                    placeholder={placeholder.FULLNAME} />
             </Form.Group>
             <Collapse in={errorMessages.showFullNameError}>
                 <div className={classes.errorMessages}>
-                    Please input a valid name
+                    {errorMessage.NAME_INVALID}
                 </div>
             </Collapse>
 
@@ -82,14 +92,14 @@ const Signup = ({
                     size="30"
                     color="#699EEE" />
                 <Form.Control
-                    onChange={e => updateState("email", e.target.value)}
+                    onChange={e => updateState(stateLabel.EMAIL, e.target.value)}
                     className={classes.inputField}
                     type="email"
-                    placeholder="Email" />
+                    placeholder={placeholder.EMAIL} />
             </Form.Group>
             <Collapse in={errorMessages.showEmailError}>
                 <div className={classes.errorMessages}>
-                    Please input a valid email id
+                    {errorMessage.EMAIL_INVALID}
                 </div>
             </Collapse>
 
@@ -101,14 +111,14 @@ const Signup = ({
                     onMouseEnter={() => setPasswordVisible(true)}
                     onMouseOut={() => setPasswordVisible(false)} />
                 <Form.Control
-                    onChange={e => updateState("password", e.target.value)}
+                    onChange={e => updateState(stateLabel.PASSWORD, e.target.value)}
                     className={classes.inputField}
                     type={passwordVisible ? "text" : "password"}
-                    placeholder="Password" />
+                    placeholder={placeholder.PASSWORD} />
             </Form.Group>
             <Collapse in={errorMessages.showPasswordError}>
-                <div className={classes.errorMessages} title="password must contain atleast one digit, one special character and must be of 8 character length">
-                    Please input a valid password
+                <div className={classes.errorMessages} title={title.PASSWORD_REQ}>
+                    {errorMessage.PASSWORD_INVALID}
                 </div>
             </Collapse>
 
@@ -120,29 +130,29 @@ const Signup = ({
                     onMouseEnter={() => setPasswordVisible(true)}
                     onMouseOut={() => setPasswordVisible(false)} />
                 <Form.Control
-                    onChange={e => updateState("confirmPassword", e.target.value)}
+                    onChange={e => updateState(stateLabel.CONFIRM_PASSWORD, e.target.value)}
                     className={classes.inputField}
                     type={passwordVisible ? "text" : "password"}
-                    placeholder="Confirm password" />
+                    placeholder={placeholder.CONFIRM_PASSWORD} />
             </Form.Group>
             <Collapse in={errorMessages.showConfirmPasswordError}>
-                <div className={classes.errorMessages} title="passwords must be same">
-                    Passwords doesnot match
+                <div className={classes.errorMessages} title={title.CONFIRM_PASSWORD_REQ}>
+                    {errorMessage.PASSWORDS_MATCH_ERR}
                 </div>
             </Collapse>
             <Collapse in={!formCompleted}>
                 <div className={classes.errorMessages}>
-                    Please fill in all fields
+                    {errorMessage.FORM_FILL_ERR}
                 </div>
             </Collapse>
             <Collapse in={errMessages.showSignupErr}>
                 <div className={classes.errorMessages}>
-                    Something went wrong, try again later
+                    {errorMessage.UNKNOWN_ERR}
                 </div>
             </Collapse>
             <Collapse in={errMessages.showEmailError}>
                 <div className={classes.errorMessages}>
-                    Email already in use
+                    {errorMessage.EMAIL_ALREADY_IN_USE}
                 </div>
             </Collapse>
 
@@ -151,7 +161,6 @@ const Signup = ({
                     variant="primary"
                     styles={{ float: "right" }}
                     text="signup"
-                    icon="arrow-right"
                     onClick={signupHandler} />
             </div>
         </Form>
