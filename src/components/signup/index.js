@@ -9,8 +9,8 @@ import * as placeholder from "../../common/constants/PlaceHolder";
 import * as stateLabel from "../../common/constants/StateLabels";
 import * as errorMessage from "../../common/constants/ErrorMessages";
 import * as title from "../../common/constants/Title";
-import classes from "./styles.module.css";
 import { SIGNUP } from "../../common/constants/Headings";
+import classes from "./styles.module.css";
 
 const Signup = ({
     onSignup,
@@ -161,6 +161,7 @@ const Signup = ({
                     variant="primary"
                     styles={{ float: "right" }}
                     text="signup"
+                    icon="arrow-right"
                     onClick={signupHandler} />
             </div>
         </Form>

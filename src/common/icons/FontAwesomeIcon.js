@@ -6,6 +6,7 @@ const FontAwesomeIcon = ({
     color,
     paddingLeft,
     paddingRight,
+    rounded,
     onMouseEnter,
     onMouseOut,
     onClick,

@@ -10,13 +10,14 @@ const ButtonPrimary = ({
     icon,
     onClick,
     variant,
+    rounded,
     styles
 }) =>
     <Button variant={variant} style={{ ...styles }} onClick={() => onClick()} className={classes.button}>
         {text}
         {
             icon &&
-            <FontAwesomeIcon title={icon} paddingLeft="10px" />
+            <FontAwesomeIcon rounded={rounded && true} title={icon} paddingLeft={text && "10px"} />
         }
     </Button>
 
