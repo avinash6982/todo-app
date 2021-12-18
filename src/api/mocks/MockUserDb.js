@@ -1,0 +1,1 @@
+export const userEmails = ['user@user.com', 'user@user.in']
