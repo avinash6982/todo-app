@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
 
-import SignupComponent from "../components/signup";
+import SignupComponent from "../components/welcome/Signup";
 import Welcome from "./Welcome";
 
 const Signup = () => {

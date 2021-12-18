@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
 
-import SigninComponent from "../components/signin";
+import SigninComponent from "../components/welcome/Signin";
 import Welcome from "./Welcome";
 
 const Signin = () => {
@@ -12,6 +12,8 @@ const Signin = () => {
         showEmailError: false
     })
 
+    const showSignup = () => navigate('/')
+
     const onSignup = data => {
         //TODO: mock signin
         console.log(data)
@@ -19,9 +21,10 @@ const Signin = () => {
     }
 
     return (
-        <Welcome>
-            <SigninComponent onSignup={onSignup} errMessages={errorMessages} />
-        </Welcome>
+        <SigninComponent
+            showSignup={showSignup}
+            onSignup={onSignup}
+            errMessages={errorMessages} />
     );
 }
 
