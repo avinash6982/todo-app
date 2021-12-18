@@ -1,28 +1,32 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
 
+import { signin } from "../api/mocks/Auth";
+import { useAuth } from "../AuthContext";
+
 import SigninComponent from "../components/welcome/Signin";
 
 const Signin = () => {
 
+    const auth = useAuth()
     const navigate = useNavigate()
     const [errorMessages, setErrorMessages] = useState({
-        showSignupError: false,
-        showEmailError: false
+        showSigninError: false
     })
 
-    const showSignup = () => navigate('/')
+    const showSignup = () => navigate('/welcome/signup')
 
-    const onSignup = data => {
-        //TODO: mock signin
-        console.log(data)
-        // navigate("/")
+    const onSignin = data => {
+
+        signin(data)
+            .then(res => auth.signin(res.data, () => navigate('/')))
+            .catch(() => setErrorMessages({ showSigninError: true }))
     }
 
     return (
         <SigninComponent
             showSignup={showSignup}
-            onSignup={onSignup}
+            onSignin={onSignin}
             errMessages={errorMessages} />
     );
 }

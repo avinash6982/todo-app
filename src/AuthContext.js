@@ -25,7 +25,7 @@ const AuthProvider = props => {
     }, [])
 
     const signin = (user, cb) => {
-        console.log(user)
+        
         updateUser(user)
         localStorage.setItem("todoappuser", JSON.stringify(user))
         cb()

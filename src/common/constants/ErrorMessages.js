@@ -9,3 +9,4 @@ export const UNKNOWN_ERR = "Something went wrong, try again later"
 export const EMAIL_ALREADY_IN_USE = "Email already in use"
 
 export const INVALID_CREDENTIALS = "Invalid credentials, please try again"
+export const NO_SUCH_USER = "No such user found"

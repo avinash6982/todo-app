@@ -21,7 +21,7 @@ export const signin = data =>
             let user = Object.values(userCredentials).filter(item => item.email === data.email)[0]
             if (user)
                 if (user.password === data.password)
-                    resolve({ data: SIGNIN_SUCCESS })
+                    resolve({ data: data.email })
                 else
                     reject({ data: INVALID_CREDENTIALS })
             else

@@ -98,15 +98,9 @@ const Signin = ({
                     </div>
                 </Collapse>
 
-                <Collapse in={errMessages.showAuthErr}>
-                    <div className={classes.errorMessages}>
-                        {errorMessage.INVALID_CREDENTIALS}
-                    </div>
-                </Collapse>
-
                 <Collapse in={errMessages.showSigninError}>
                     <div className={classes.errorMessages}>
-                        {errorMessage.UNKNOWN_ERR}
+                        {errorMessage.INVALID_CREDENTIALS}
                     </div>
                 </Collapse>
 

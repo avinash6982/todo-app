@@ -3,6 +3,7 @@ import { Navbar, Container, Nav } from "react-bootstrap";
 import classes from "./styles.module.css";
 
 const NavbarComponent = ({
+    auth,
     onSignout
 }) => {
 
@@ -16,9 +17,12 @@ const NavbarComponent = ({
                     </Nav>
                     <Nav>
                         <Nav.Link href="/faq">FAQ</Nav.Link>
-                        <Nav.Link onClick={() => onSignout()} href="">
-                            Logout
-                        </Nav.Link>
+                        {
+                            auth &&
+                            <Nav.Link onClick={() => onSignout()} href="">
+                                Logout
+                            </Nav.Link>
+                        }
                     </Nav>
                 </Navbar.Collapse>
             </Container>

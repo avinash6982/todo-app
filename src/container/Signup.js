@@ -17,11 +17,11 @@ const Signup = () => {
     })
 
     const showSignin = () =>
-        navigate('/welcome/signin') 
+        navigate('/welcome/signin')
 
     const onSignup = data =>
         signup(data)
-            .then(res => auth.signin(res.email, () => navigate('/')))
+            .then(res => auth.signin(res.data.email, () => navigate('/')))
             .catch(err =>
                 err === EMAIL_ALREADY_IN_USE ?
                     setErrorMessages(previousState => ({
