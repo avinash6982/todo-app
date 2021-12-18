@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router";
 
 import SignupComponent from "../components/welcome/Signup";
-import Welcome from "./Welcome";
+import { signup } from "../api/mocks/Auth";
 
 const Signup = () => {
 
@@ -12,15 +12,16 @@ const Signup = () => {
         showEmailError: false
     })
 
+    const showSignin = () =>
+        console.log("navigate to signin")
+
     const onSignup = data => {
-        //TODO: mock signup
-        navigate("/welcome/signin")
+        signup(data)
+            .then(res => console.log(res))
     }
 
     return (
-        <Welcome>
-            <SignupComponent onSignup={onSignup} errMessages={errorMessages} />
-        </Welcome>
+        <SignupComponent showSignin={showSignin} onSignup={onSignup} errMessages={errorMessages} />
     );
 }
 

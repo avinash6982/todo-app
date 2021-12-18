@@ -9,5 +9,5 @@ export const signup = data =>
             if (Object.values(userEmails).includes(data.email))
                 reject(EMAIL_ALREADY_IN_USE)
             else
-                resolve({ data: signupResolver })
+                resolve({ data: signupResolver(data) })
         }, 300))

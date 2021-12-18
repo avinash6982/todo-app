@@ -12,7 +12,7 @@ const WelcomeMessage = () =>
         }
     </Container>
 
-const WelcomeComponent = props =>
+const WelcomeWrapper = props =>
     <Container className="main-container">
         <Row className="full-height">
             <Col sm={3} className="center">
@@ -24,4 +24,4 @@ const WelcomeComponent = props =>
         </Row>
     </Container>
 
-export default WelcomeComponent
+export default WelcomeWrapper

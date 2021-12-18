@@ -53,11 +53,13 @@ const Signin = ({
     return (
         <WelcomeWrapper>
             <Form className="formContainer">
+
                 <Form.Label>
                     <h3>
                         {SIGNIN}
                     </h3>
                 </Form.Label>
+
                 <Form.Group className={classes.inputContainer}>
                     <FontAwesomeIcon
                         title="user"
@@ -69,6 +71,7 @@ const Signin = ({
                         type="text"
                         placeholder={placeholder.EMAIL} />
                 </Form.Group>
+
                 <Collapse in={errorMessages.showEmailError}>
                     <div className={classes.errorMessages}>
                         {errorMessage.EMAIL_INVALID}
@@ -88,16 +91,19 @@ const Signin = ({
                         type={passwordVisible ? "text" : "password"}
                         placeholder={placeholder.PASSWORD} />
                 </Form.Group>
+
                 <Collapse in={errorMessages.showPasswordError}>
                     <div className={classes.errorMessages} title={title.PASSWORD_REQ}>
                         {errorMessage.PASSWORD_INVALID}
                     </div>
                 </Collapse>
+
                 <Collapse in={errMessages.showAuthErr}>
                     <div className={classes.errorMessages}>
                         {errorMessage.INVALID_CREDENTIALS}
                     </div>
                 </Collapse>
+
                 <Collapse in={errMessages.showSigninError}>
                     <div className={classes.errorMessages}>
                         {errorMessage.UNKNOWN_ERR}
