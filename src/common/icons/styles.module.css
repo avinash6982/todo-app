@@ -1,0 +1,7 @@
+.faIcon {
+    transition: transform .2s;
+}
+
+.faIcon:hover {
+    transform: scale(1.3);
+}
