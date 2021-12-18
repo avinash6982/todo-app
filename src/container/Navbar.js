@@ -4,6 +4,7 @@ import NavbarComponent from "../components/navbar";
 const Navbar = () => {
 
     const auth = useAuth()
+    console.log(auth)
 
     const onSignout = () =>
         auth.signout()

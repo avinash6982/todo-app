@@ -17,7 +17,7 @@ const AuthProvider = props => {
 
     useEffect(() => {
 
-        let userDetails = JSON.parse(localStorage.getItem("todoappuser"))
+        let userDetails = localStorage.getItem("todoappuser")
         if (userDetails !== user.user)
             updateUser(userDetails)
         else
@@ -25,7 +25,7 @@ const AuthProvider = props => {
     }, [])
 
     const signin = (user, cb) => {
-
+        console.log(user)
         updateUser(user)
         localStorage.setItem("todoappuser", JSON.stringify(user))
         cb()

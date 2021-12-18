@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router";
 
 import SigninComponent from "../components/welcome/Signin";
-import Welcome from "./Welcome";
 
 const Signin = () => {
 

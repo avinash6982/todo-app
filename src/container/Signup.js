@@ -3,9 +3,13 @@ import { useNavigate } from "react-router";
 
 import SignupComponent from "../components/welcome/Signup";
 import { signup } from "../api/mocks/Auth";
+import { useAuth } from "../AuthContext";
+
+import { EMAIL_ALREADY_IN_USE } from "../common/constants/ErrorMessages";
 
 const Signup = () => {
 
+    const auth = useAuth()
     const navigate = useNavigate()
     const [errorMessages, setErrorMessages] = useState({
         showSignupError: false,
@@ -13,12 +17,21 @@ const Signup = () => {
     })
 
     const showSignin = () =>
-        console.log("navigate to signin")
+        navigate('/welcome/signin') 
 
-    const onSignup = data => {
+    const onSignup = data =>
         signup(data)
-            .then(res => console.log(res))
-    }
+            .then(res => auth.signin(res.email, () => navigate('/')))
+            .catch(err =>
+                err === EMAIL_ALREADY_IN_USE ?
+                    setErrorMessages(previousState => ({
+                        ...previousState,
+                        showEmailError: true
+                    })) :
+                    setErrorMessages(previousState => ({
+                        ...previousState,
+                        showSignupError: true
+                    })))
 
     return (
         <SignupComponent showSignin={showSignin} onSignup={onSignup} errMessages={errorMessages} />
