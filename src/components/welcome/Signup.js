@@ -4,6 +4,7 @@ import { Collapse, Form, } from "react-bootstrap";
 import CustomButton from "../../common/buttons/CustomButton";
 import FontAwesomeIcon from "../../common/icons/FontAwesomeIcon";
 import * as formValidators from "../../services/validators/FormValidator";
+import WelcomeWrapper from "./Wrapper";
 
 import * as placeholder from "../../common/constants/PlaceHolder";
 import * as stateLabel from "../../common/constants/StateLabels";
@@ -11,7 +12,6 @@ import * as errorMessage from "../../common/constants/ErrorMessages";
 import * as title from "../../common/constants/Title";
 import { SIGNUP } from "../../common/constants/Headings";
 import classes from "./styles.module.css";
-import WelcomeWrapper from "./Wrapper";
 
 const Signup = ({
     showSignin,

@@ -3,7 +3,6 @@ import { useNavigate } from "react-router";
 
 import { signin } from "../api/mocks/Auth";
 import { useAuth } from "../AuthContext";
-
 import SigninComponent from "../components/welcome/Signin";
 
 const Signin = () => {

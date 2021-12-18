@@ -2,7 +2,6 @@ import { signupResolver } from '../../services/DataResolver';
 import { userCredentials, userEmails } from './MockUserDb';
 
 import { EMAIL_ALREADY_IN_USE, INVALID_CREDENTIALS, NO_SUCH_USER } from '../../common/constants/ErrorMessages';
-import { SIGNIN_SUCCESS } from '../../common/constants/SuccessMessages';
 
 export const signup = data =>
     new Promise((resolve, reject) =>
